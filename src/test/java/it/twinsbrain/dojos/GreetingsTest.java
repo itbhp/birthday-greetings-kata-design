@@ -67,4 +67,23 @@ public class GreetingsTest {
     verify(messageSender, times(2)).sendMessageTo(messagesCaptor.capture());
     assertThat(messagesCaptor.getAllValues()).containsExactlyInAnyOrder(joe, alice);
   }
+
+  @Test
+  void ignore_friends_whose_birthday_not_today() {
+    // given
+    var today = parse("2023-10-12");
+    var joe = new Friend("Joe", "Black", parse("1984-10-12"), "joe.black@email.com");
+    var bob = new Friend("Bob", "Sting", parse("1989-02-15"), "bob.sting@email.com");
+    var alice = new Friend("Alice", "Kent", parse("1987-10-12"), "alice.kent@email.com");
+
+    given(phoneBook.all()).willReturn(List.of(joe, bob, alice));
+
+    // when
+    underTest.greetFriendsBorn(today);
+
+    // then
+    var messagesCaptor = ArgumentCaptor.forClass(Friend.class);
+    verify(messageSender, times(2)).sendMessageTo(messagesCaptor.capture());
+    assertThat(messagesCaptor.getAllValues()).containsExactlyInAnyOrder(joe, alice);
+  }
 }
