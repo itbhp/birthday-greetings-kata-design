@@ -1,10 +1,12 @@
-package it.twinsbrain.dojos;
+package it.twinsbrain.dojos.domain;
 
 import static java.time.LocalDate.parse;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
+import it.twinsbrain.dojos.ports.MessageSender;
+import it.twinsbrain.dojos.ports.PhoneBook;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

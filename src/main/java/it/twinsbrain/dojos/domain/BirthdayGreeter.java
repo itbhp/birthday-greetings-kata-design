@@ -1,5 +1,7 @@
-package it.twinsbrain.dojos;
+package it.twinsbrain.dojos.domain;
 
+import it.twinsbrain.dojos.ports.MessageSender;
+import it.twinsbrain.dojos.ports.PhoneBook;
 import java.time.LocalDate;
 
 public class BirthdayGreeter {
