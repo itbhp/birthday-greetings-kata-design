@@ -53,7 +53,7 @@ class CsvPhoneBookIT {
     // given
     var content = """
     last_name, first_name, date_of_birth, email
-    Justin, Bieber, 2000-01, bieber@email.com
+    Justin, Bieber, 2000-01-01, bieber@email.com
     """.trim();
 
     // when, then
@@ -67,7 +67,7 @@ class CsvPhoneBookIT {
     // given
     var content = """
     last_name, first_name, date_of_birth, email
-    Bieber, Justin, 2000-01-01, bieber@email.com
+    Bieber, Justin, 2000/01/01, bieber@email.com
     """.trim();
 
     // when, then
@@ -81,9 +81,9 @@ class CsvPhoneBookIT {
     // given
     var content = """
     last_name, first_name, date_of_birth, email
-    Bieber, Justin, 2000-01-01, bieber@email.com
-    Bieber, Lea, 2004-01-01, lea.bieber@email.com
-    Bieber, Fred, 2010-01-01, fred.bieber@email.com
+    Bieber, Justin, 2000/01/01, bieber@email.com
+    Bieber, Lea, 2004/01/01, lea.bieber@email.com
+    Bieber, Fred, 2010/01/01, fred.bieber@email.com
     """.trim();
 
     // when, then

@@ -4,6 +4,7 @@ import it.twinsbrain.dojos.domain.Friend;
 import it.twinsbrain.dojos.domain.PhoneBookReadException;
 import it.twinsbrain.dojos.ports.PhoneBook;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
@@ -49,7 +50,7 @@ public class CsvPhoneBook implements PhoneBook {
 
   private LocalDate parseDate(String dateString) {
     try {
-      return LocalDate.parse(dateString);
+      return LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy/MM/dd"));
     } catch (DateTimeParseException e) {
       throw new PhoneBookReadException();
     }
