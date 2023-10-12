@@ -22,6 +22,8 @@
         <jmh.version>1.35</jmh.version>
         <mockito-junit-jupiter.version>4.8.1</mockito-junit-jupiter.version>
         <assertj-core.version>3.24.2</assertj-core.version>
+        <greenmail-junit5.version>2.0.0</greenmail-junit5.version>
+        <simple-java-mail.version>8.3.1</simple-java-mail.version>
     </properties>
 
     <dependencies>
@@ -85,7 +87,22 @@
             <version>${assertj-core.version}</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>com.icegreen</groupId>
+            <artifactId>greenmail-junit5</artifactId>
+            <version>${greenmail-junit5.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.simplejavamail</groupId>
+            <artifactId>simple-java-mail</artifactId>
+            <version>${simple-java-mail.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.simplejavamail</groupId>
+            <artifactId>batch-module</artifactId>
+            <version>${simple-java-mail.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
