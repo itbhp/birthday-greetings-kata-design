@@ -12,7 +12,9 @@ public class BirthdayGreeter {
     }
 
     public void greetFriendsBorn(LocalDate today) {
-        var friend = phoneBook.all().get(0);
-        messageSender.sendMessageTo(friend);
+        phoneBook.all()
+                .stream()
+                .filter(friend -> friend.isBorn(today))
+                .forEach(messageSender::sendMessageTo);
     }
 }
