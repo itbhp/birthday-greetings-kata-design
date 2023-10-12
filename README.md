@@ -16,7 +16,7 @@ Imagine you have a flat file with all your friends :
     Doe, John, 1982/10/08, john.doe@foobar.com
     Ann, Mary, 1975/09/11, mary.ann@foobar.com
 
-And you want to send them a happy birthday email on their birthdate :
+And you want to send them a happy birthday email on their birthdate:
 
     Subject: Happy birthday!
 
