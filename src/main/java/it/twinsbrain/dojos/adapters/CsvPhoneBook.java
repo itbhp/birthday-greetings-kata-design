@@ -8,11 +8,14 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
 
 public class CsvPhoneBook implements PhoneBook {
   private final String content;
   private List<Friend> friends;
+  private final Lock lock = new ReentrantLock();
 
   public CsvPhoneBook(String content) {
     this.content = content;
@@ -20,13 +23,19 @@ public class CsvPhoneBook implements PhoneBook {
 
   @Override
   public List<Friend> all() {
-    if (friends == null) {
-      friends = parseContent();
+    lock.lock();
+    try {
+      if (friends == null) {
+        friends = parse(content);
+      }
+    } finally {
+
+      lock.unlock();
     }
     return friends;
   }
 
-  private List<Friend> parseContent() {
+  private List<Friend> parse(String content) {
     if (content.isBlank()) {
       return List.of();
     }
