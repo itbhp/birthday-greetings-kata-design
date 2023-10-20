@@ -5,7 +5,7 @@ import com.icegreen.greenmail.junit5.GreenMailExtension;
 import com.icegreen.greenmail.util.GreenMailUtil;
 import com.icegreen.greenmail.util.ServerSetupTest;
 import it.twinsbrain.dojos.adapters.CsvPhoneBook;
-import it.twinsbrain.dojos.adapters.MailMessageSender;
+import it.twinsbrain.dojos.adapters.EMailBirthdayPostman;
 import it.twinsbrain.dojos.domain.BirthdayGreeter;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.InternetAddress;
@@ -33,8 +33,8 @@ public class AcceptanceTest {
     var port = greenMail.getSmtp().getServerSetup().getPort();
     var host = greenMail.getSmtp().getServerSetup().getBindAddress();
     var mailMessageSender =
-        new MailMessageSender(
-            new MailMessageSender.SmtpConfig(host, port, "smtpUser", "passwd"), "sender@email.com");
+        new EMailBirthdayPostman(
+            new EMailBirthdayPostman.SmtpConfig(host, port, "smtpUser", "passwd"), "sender@email.com");
     // given
     var csvPhoneBook = new CsvPhoneBook(readFixture());
     greeter = new BirthdayGreeter(mailMessageSender, csvPhoneBook);

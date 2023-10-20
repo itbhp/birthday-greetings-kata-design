@@ -14,9 +14,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
-class MailMessageSenderIT {
+class EMailBirthdayPostmanIT {
 
-  private MailMessageSender mailMessageSender;
+  private EMailBirthdayPostman mailMessageSender;
 
   @RegisterExtension
   static GreenMailExtension greenMail = new GreenMailExtension(ServerSetupTest.SMTP)
@@ -27,8 +27,8 @@ class MailMessageSenderIT {
   void setUp() {
     var port = greenMail.getSmtp().getServerSetup().getPort();
     var host = greenMail.getSmtp().getServerSetup().getBindAddress();
-    mailMessageSender = new MailMessageSender(
-            new MailMessageSender.SmtpConfig(host, port, "smtpUser", "passwd"),
+    mailMessageSender = new EMailBirthdayPostman(
+            new EMailBirthdayPostman.SmtpConfig(host, port, "smtpUser", "passwd"),
             "sender@email.com"
     );
   }

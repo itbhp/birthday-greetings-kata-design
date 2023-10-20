@@ -1,19 +1,19 @@
 package it.twinsbrain.dojos.adapters;
 
 import it.twinsbrain.dojos.domain.Friend;
-import it.twinsbrain.dojos.domain.MessageSenderException;
-import it.twinsbrain.dojos.ports.MessageSender;
+import it.twinsbrain.dojos.domain.MessageDeliveryException;
+import it.twinsbrain.dojos.ports.BirthdayPostman;
 import org.simplejavamail.api.email.Email;
 import org.simplejavamail.api.mailer.Mailer;
 import org.simplejavamail.api.mailer.config.TransportStrategy;
 import org.simplejavamail.email.EmailBuilder;
 import org.simplejavamail.mailer.MailerBuilder;
 
-public class MailMessageSender implements MessageSender {
+public class EMailBirthdayPostman implements BirthdayPostman {
   private final SmtpConfig smtpConfig;
   private final String sender;
 
-  public MailMessageSender(SmtpConfig smtpConfig, String sender) {
+  public EMailBirthdayPostman(SmtpConfig smtpConfig, String sender) {
     this.smtpConfig = smtpConfig;
     this.sender = sender;
   }
@@ -24,7 +24,7 @@ public class MailMessageSender implements MessageSender {
     try (var mailer = newMailer()) {
       mailer.sendMail(email);
     } catch (Exception e) {
-      throw new MessageSenderException();
+      throw new MessageDeliveryException();
     }
   }
 

@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
-import it.twinsbrain.dojos.ports.MessageSender;
+import it.twinsbrain.dojos.ports.BirthdayPostman;
 import it.twinsbrain.dojos.ports.PhoneBook;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,14 +21,14 @@ public class GreetingsTest {
   private BirthdayGreeter underTest;
 
   @Mock
-  private MessageSender messageSender;
+  private BirthdayPostman birthdayPostMan;
 
   @Mock
   private PhoneBook phoneBook;
 
   @BeforeEach
   void setUp() {
-    underTest = new BirthdayGreeter(messageSender, phoneBook);
+    underTest = new BirthdayGreeter(birthdayPostMan, phoneBook);
   }
 
   @Test
@@ -46,7 +46,7 @@ public class GreetingsTest {
 
     // then
     var messagesCaptor = ArgumentCaptor.forClass(Friend.class);
-    verify(messageSender, times(2)).sendMessageTo(messagesCaptor.capture());
+    verify(birthdayPostMan, times(2)).sendMessageTo(messagesCaptor.capture());
     assertThat(messagesCaptor.getAllValues()).containsExactlyInAnyOrder(joe, alice);
   }
 
@@ -60,6 +60,6 @@ public class GreetingsTest {
     underTest.greetFriendsBorn(today);
 
     // then
-    verifyNoInteractions(messageSender);
+    verifyNoInteractions(birthdayPostMan);
   }
 }

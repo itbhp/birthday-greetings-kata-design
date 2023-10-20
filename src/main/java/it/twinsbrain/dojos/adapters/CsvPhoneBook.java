@@ -29,7 +29,6 @@ public class CsvPhoneBook implements PhoneBook {
         friends = parse(content);
       }
     } finally {
-
       lock.unlock();
     }
     return friends;
