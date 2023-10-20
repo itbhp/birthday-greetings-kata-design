@@ -5,11 +5,11 @@ import it.twinsbrain.dojos.ports.PhoneBook;
 import java.time.LocalDate;
 
 public class BirthdayGreeter {
-    private final BirthdayPostman messageSender;
+    private final BirthdayPostman postman;
     private final PhoneBook phoneBook;
 
     public BirthdayGreeter(BirthdayPostman birthdayPostMan, PhoneBook phoneBook) {
-        this.messageSender = birthdayPostMan;
+        this.postman = birthdayPostMan;
         this.phoneBook = phoneBook;
     }
 
@@ -17,6 +17,6 @@ public class BirthdayGreeter {
         phoneBook.all()
                 .stream()
                 .filter(friend -> friend.isBorn(today))
-                .forEach(messageSender::sendMessageTo);
+                .forEach(postman::sendMessageTo);
     }
 }
