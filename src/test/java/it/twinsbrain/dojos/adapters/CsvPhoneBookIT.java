@@ -63,21 +63,7 @@ class CsvPhoneBookIT {
   }
 
   @Test
-  void one_friend_phone_book() {
-    // given
-    var content = """
-    last_name, first_name, date_of_birth, email
-    Bieber, Justin, 2000/01/01, bieber@email.com
-    """.trim();
-
-    // when, then
-    var underTest = new CsvPhoneBook(content);
-    var bieber = new Friend("Justin", "Bieber", LocalDate.parse("2000-01-01"), "bieber@email.com");
-    assertThat(underTest.all()).containsExactlyInAnyOrder(bieber);
-  }
-
-  @Test
-  void many_friends_phone_book() {
+  void non_empty_phone_book() {
     // given
     var content = """
     last_name, first_name, date_of_birth, email
