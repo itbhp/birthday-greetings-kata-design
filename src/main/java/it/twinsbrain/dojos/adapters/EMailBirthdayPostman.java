@@ -28,20 +28,20 @@ public class EMailBirthdayPostman implements BirthdayPostman {
     }
   }
 
+  private Email createBirthdayemail(Friend friend) {
+    return EmailBuilder.startingBlank()
+            .from(sender)
+            .to(friend.email())
+            .withSubject("Happy birthday!")
+            .withPlainText("Happy birthday, dear %s!".formatted(friend.name()))
+            .buildEmail();
+  }
+
   private Mailer newMailer() {
     return MailerBuilder.withSMTPServer(
             smtpConfig.host(), smtpConfig.port(), smtpConfig.smtpUser(), smtpConfig.smtpPassword())
         .withTransportStrategy(TransportStrategy.SMTP)
         .buildMailer();
-  }
-
-  private Email createBirthdayemail(Friend friend) {
-    return EmailBuilder.startingBlank()
-        .from(sender)
-        .to(friend.email())
-        .withSubject("Happy birthday!")
-        .withPlainText("Happy birthday, dear %s!".formatted(friend.name()))
-        .buildEmail();
   }
 
   public record SmtpConfig(String host, int port, String smtpUser, String smtpPassword) {}
